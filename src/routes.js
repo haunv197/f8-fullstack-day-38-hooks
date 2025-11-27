@@ -3,6 +3,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import CountDown from "./pages/CountDown";
 import Counter from "./pages/Counter";
 import Home from "./pages/Home";
+import ShoppingCart from "./pages/ShoppingCart_Demo";
 
 const routes = [
   {
@@ -19,6 +20,10 @@ const routes = [
       {
         path: paths.countDown,
         component: CountDown,
+      },
+      {
+        path: paths.shoppingCart,
+        component: ShoppingCart,
       },
     ],
   },
