@@ -12,4 +12,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  base: "/f8-fullstack-day-38-hooks/",
 });
