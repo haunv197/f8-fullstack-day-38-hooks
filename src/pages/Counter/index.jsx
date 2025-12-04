@@ -36,11 +36,12 @@ function Counter() {
   const [countB, setCountB] = useState(0);
 
   const handleIncreaseA = useCallback(() => {
-    setCountA(countA + 1);
-  }, [countA]);
+    setCountA((prev) => prev + 1);
+  }, []);
+
   const handleIncreaseB = useCallback(() => {
-    setCountB(countB + 1);
-  }, [countB]);
+    setCountB((prev) => prev + 1);
+  }, []);
 
   return (
     <div className="flex flex-wrap gap-10 p-4">

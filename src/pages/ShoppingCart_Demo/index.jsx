@@ -10,8 +10,8 @@ function UseReducer() {
   // dispatch: là 1 hàm khi gọi sẽ nhận 1 action
   // Khi gọi dispatch() thì reducer sẽ được gọi
 
-  console.log("count", count);
-  console.log("UseReducer");
+  // console.log("count", count);
+  // console.log("UseReducer");
 
   return (
     <div>
@@ -43,7 +43,7 @@ function TestTheme() {
     document.body.classList.toggle("light", isLight);
   }, [theme]);
 
-  console.log("TestTheme - theme", theme);
+  // console.log("TestTheme - theme", theme);
 
   return (
     <div
@@ -65,16 +65,16 @@ function TestTheme() {
     </div>
   );
 }
-function ShoppingCart() {
-  console.log("ShoppingCart");
+// function ShoppingCart() {
+//   console.log("ShoppingCart");
 
-  return (
-    <div className="mx-auto p-5">
-      <h1>ShoppingCart</h1>
-      <UseReducer />
-      <TestTheme />
-    </div>
-  );
-}
+//   return (
+//     <div className="mx-auto p-5">
+//       <h1>ShoppingCart</h1>
+//       <UseReducer />
+//       <TestTheme />
+//     </div>
+//   );
+// }
 
-export default ShoppingCart;
+// export default ShoppingCart;

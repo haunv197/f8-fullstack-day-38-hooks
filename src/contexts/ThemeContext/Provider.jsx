@@ -4,7 +4,7 @@ import ThemeContext from "./Context";
 const Provider = ({ children }) => {
   const [theme, setTheme] = useState("light");
 
-  console.log("Provider - Provider", theme);
+  // console.log("Provider - Provider", theme);
 
   const values = {
     theme,
