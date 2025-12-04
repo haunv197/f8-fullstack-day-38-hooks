@@ -5,7 +5,7 @@ function useCart() {
   const context = useContext(CartContext);
 
   if (!context) {
-    throw Error("Bạn đang dùng ngoài CartProvider");
+    throw Error("You are using other than CartProvider");
   }
   return context;
 }

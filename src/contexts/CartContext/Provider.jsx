@@ -21,7 +21,6 @@ export default function Provider({ children }) {
     )
   );
 
-  console.log("cart", cart);
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);

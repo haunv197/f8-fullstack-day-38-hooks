@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const INIT_COUNTDOWN = 10;
 function CountDown() {
   const [count, setCount] = useState(INIT_COUNTDOWN);
-  const [restartTrigger, setRestartTrigger] = useState(false);
+  const [toggleCountDown, seToggleCountDown] = useState(false);
 
   useEffect(() => {
     const countDownId = setInterval(() => {
@@ -12,8 +12,6 @@ function CountDown() {
         if (count > 0) return count - 1;
 
         clearInterval(countDownId);
-        console.log("count", count);
-
         return 0;
       });
     }, 1000);
@@ -21,10 +19,10 @@ function CountDown() {
     return () => {
       clearInterval(countDownId);
     };
-  }, [restartTrigger]);
+  }, [toggleCountDown]);
 
   const handleResetCountDown = () => {
-    setRestartTrigger((prev) => !prev);
+    seToggleCountDown((prev) => !prev);
     setCount(INIT_COUNTDOWN);
   };
   return (
