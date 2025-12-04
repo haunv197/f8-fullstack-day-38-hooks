@@ -118,7 +118,7 @@ function Cart() {
             </div>
             <div className="text-right font-bold">
               Total:
-              <span className="text-red-600"> {totalPrice}</span>
+              <span className="text-red-600"> {totalPrice}đ</span>
             </div>
             <div className="text-right">
               <Button variant="outline" onClick={handleClearCart}>

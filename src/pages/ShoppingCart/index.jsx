@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const ADD_TO_CART_BTN = "Add to Cart";
 function ShoppingCart() {
   const [products, setProducts] = useState([]);
-  const { addToCart, removeFromCart, updateQuantity, cart } = useCart();
+  const { addToCart } = useCart();
 
   useEffect(() => {
     productService.getProducts().then((response) => {
@@ -15,7 +15,6 @@ function ShoppingCart() {
     });
   }, []);
 
-  // console.log("products", products);
   return (
     <div>
       <div className="mx-auto p-5">
@@ -36,7 +35,7 @@ function ShoppingCart() {
                     />
                   </div>
                   <h3 className="font-semibold uppercase">{title}</h3>
-                  <p className="text-red-500">{price}</p>
+                  <p className="text-red-500">{price}đ</p>
                   <Button onClick={() => addToCart(newProduct)}>
                     {ADD_TO_CART_BTN}
                   </Button>

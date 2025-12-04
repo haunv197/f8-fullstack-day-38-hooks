@@ -11,83 +11,69 @@ import {
  * @param {*} action là 1 object mô tả hành động sẽ được thực hiện, cấu trúc của nó là
  * {type: "loại-hành-động", payload: "dữ liệu (nếu có)"}
  */
+
+const calcTotals = (items) => {
+  const totalQuantity = items.reduce(
+    (sum, item) => sum + (item.quantity ?? 0),
+    0
+  );
+
+  const totalPrice = items.reduce(
+    (sum, item) => sum + (item.price ?? 0) * (item.quantity ?? 0),
+    0
+  );
+
+  return { totalQuantity, totalPrice };
+};
+
 const reducer = (state, action) => {
   // Xử lý và trả về state mới => component sẽ re-render với state mới
 
-  // console.log(action.type);
-  // console.log(action.payload);
-  // console.log("state", state);
-  // console.log("action", action.payload);
-
   switch (action.type) {
     case ADD_TO_CART: {
-      const exitsProduct = state.items.find(
-        (item) => item.id === action.payload.id
-      );
+      const exists = state.items.find((item) => item.id === action.payload.id);
 
-      if (exitsProduct) {
-        exitsProduct.quantity = exitsProduct.quantity + 1;
+      let newItems;
+
+      if (exists) {
+        newItems = state.items.map((item) =>
+          item.id === exists.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
       } else {
-        state.items.push({
-          ...action.payload,
-          quantity: 1,
-        });
+        newItems = [...state.items, { ...action.payload, quantity: 1 }];
       }
 
       return {
         ...state,
-        items: state.items,
-        totalPrice: state.totalPrice + action.payload.price,
-        totalQuantity: state.totalQuantity + 1,
+        items: newItems,
+        ...calcTotals(newItems),
       };
     }
     case REMOVE_FROM_CART: {
-      console.log("action.payload", action.payload);
-      const newCart = state.items.filter(
+      const newItems = state.items.filter(
         (item) => item.id !== action.payload.productId
-      );
-      console.log("newCart", newCart);
-
-      const totalQuantity = newCart.reduce(
-        (sum, item) => sum + (item.quantity ?? 0),
-        0
-      );
-      const totalPrice = newCart.reduce(
-        (sum, item) => sum + (item.price ?? 0) * (item.quantity ?? 0),
-        0
       );
 
       return {
         ...state,
-        items: newCart,
-        totalQuantity: totalQuantity,
-        totalPrice: totalPrice,
+        items: newItems,
+        ...calcTotals(newItems),
       };
     }
 
     case UPDATE_QUANTITY: {
-      const product = state.items.find(
-        (item) => item.id === action.payload.productId
-      );
-
-      if (!product) {
-        return;
-      }
-      product.quantity = action.payload.quantity;
-
-      const totalQuantity = state.items.reduce(
-        (sum, item) => sum + (item.quantity ?? 0),
-        0
-      );
-      const totalPrice = state.items.reduce(
-        (sum, item) => sum + (item.price ?? 0) * (item.quantity ?? 0),
-        0
+      const newItems = state.items.map((item) =>
+        item.id === action.payload.productId
+          ? { ...item, quantity: action.payload.quantity }
+          : item
       );
 
       return {
         ...state,
-        totalQuantity: totalQuantity,
-        totalPrice: totalPrice,
+        items: newItems,
+        ...calcTotals(newItems),
       };
     }
 
