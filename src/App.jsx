@@ -4,7 +4,7 @@ import routes from "./routes";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/f8-fullstack-day-38-hooks/">
       <Routes>
         {routes.map((route, index) => {
           const Layout = route.layout;
