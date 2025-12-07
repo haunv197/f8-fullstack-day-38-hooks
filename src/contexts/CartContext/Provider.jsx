@@ -9,17 +9,15 @@ import {
 import CartContext from "./Context";
 
 export default function Provider({ children }) {
-  const [cart, dispatch] = useReducer(
-    reducer,
-    JSON.parse(
-      localStorage.getItem("cart") ||
-        JSON.stringify({
-          items: [],
-          totalPrice: 0,
-          totalQuantity: 0,
-        })
-    )
+  const initState = JSON.parse(
+    localStorage.getItem("cart") ||
+      JSON.stringify({
+        items: [],
+        totalPrice: 0,
+        totalQuantity: 0,
+      })
   );
+  const [cart, dispatch] = useReducer(reducer, initState);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
